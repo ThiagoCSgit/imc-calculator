@@ -5,6 +5,8 @@ import {
   TextInput,
   TouchableOpacity,
   Vibration,
+  Keyboard,
+  Pressable,
 } from "react-native";
 import ResultImc from "./ResultImc";
 import styles from "./styles";
@@ -24,6 +26,7 @@ export default function Form() {
   }
 
   function validationImc() {
+    Keyboard.dismiss();
     if (weight != null && height != null) {
       imcCalculator();
       setMessageImc("Seu imc é igual a");
@@ -47,7 +50,7 @@ export default function Form() {
   }
 
   return (
-    <View style={styles.formContext}>
+    <Pressable onPress={Keyboard.dismiss} style={styles.formContext}>
       <View style={styles.form}>
         <Text style={styles.formLabel}>Altura</Text>
         <TextInput
@@ -73,6 +76,6 @@ export default function Form() {
         </TouchableOpacity>
       </View>
       <ResultImc messageResultImc={messageImc} resultImc={imc} />
-    </View>
+    </Pressable>
   );
 }
