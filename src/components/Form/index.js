@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Vibration,
+} from "react-native";
 import ResultImc from "./ResultImc";
 import styles from "./styles";
 
@@ -12,7 +18,9 @@ export default function Form() {
   const [errorMessage, setErrorMessage] = useState(null);
 
   function imcCalculator() {
-    return setImc((weight / height ** 2).toFixed(2));
+    return setImc(
+      (weight.replace(",", ".") / height.replace(",", ".") ** 2).toFixed(2)
+    );
   }
 
   function validationImc() {
@@ -22,16 +30,18 @@ export default function Form() {
       setTextButton("Calcular novamente");
       setHeight(null);
       setWeight(null);
+      setErrorMessage(null);
       return;
     }
     setImc(null);
+    verirficationImc();
     setTextButton("Calcular IMC");
     setMessageImc("Preencha a altura e o peso");
-    setErrorMessage(null);
   }
 
   function verirficationImc() {
     if (imc == null) {
+      Vibration.vibrate();
       setErrorMessage("Campo obrigatório*");
     }
   }
@@ -40,7 +50,6 @@ export default function Form() {
     <View style={styles.formContext}>
       <View style={styles.form}>
         <Text style={styles.formLabel}>Altura</Text>
-        <Text style={styles.errorMessage}>{{ errorMessage }}</Text>
         <TextInput
           style={styles.formInput}
           placeholder="Ex: 1.75"
@@ -48,6 +57,7 @@ export default function Form() {
           onChangeText={setHeight}
           value={height}
         />
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
 
         <Text style={styles.formLabel}>Peso</Text>
         <TextInput
@@ -57,6 +67,7 @@ export default function Form() {
           onChangeText={setWeight}
           value={weight}
         />
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
         <TouchableOpacity onPress={validationImc} style={styles.formButton}>
           <Text style={styles.textButton}>{textButton}</Text>
         </TouchableOpacity>
