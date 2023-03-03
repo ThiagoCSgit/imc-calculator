@@ -7,18 +7,19 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     alignItems: "center",
-    paddingTop: 30,
+    marginTop: 30
   },
   form: {
     width: "100%",
     height: "auto",
-    marginTop: 30,
+    marginTop: 20,
     padding: 25,
   },
   formLabel: {
     color: "#000",
     fontSize: 18,
     paddingLeft: 20,
+    marginTop: 10
   },
   formInput: {
     width: "90%",
@@ -49,6 +50,25 @@ const styles = StyleSheet.create({
     fontWeight: 700,
     paddingLeft: 20,
   },
+  exhibitionResultImc: {
+    width: "90%",
+    height: "50%"
+  },
+  listImc: {
+    marginTop: 20
+  },
+  resultImcItem: {
+    fontSize: 24,
+    fontWeight: 700,
+    color: "gray",
+    height: 50,
+    width: "100%",
+    paddingRight: 20
+  },
+  textResultItemList: {
+    fontSize: 24,
+    fontStyle: "normal"
+  }
 });
 
 export default styles;
