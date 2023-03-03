@@ -22,12 +22,12 @@ const styles = StyleSheet.create({
   boxShareButton: {
     width: "100%",
     alignItems: "center",
-    marginBottom: 15,
   },
   share: {
     backgroundColor: "#1877f2",
     borderRadius: 50,
     paddingVertical: 10,
+    marginTop: 15
   },
   sharedText: {
     color: "#fff",
